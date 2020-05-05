@@ -1,0 +1,24 @@
+.success-result {
+    display: none;
+}
+
+.notification.is-warning {
+    background-color: #f49832 !important;
+}
+
+.hero.is-success .title {
+    color: #1d1d1b !important;
+}
+
+.button.is-warning.is-hovered {
+    background-color: #f49832;
+}
+
+.hero.is-warning {
+    background-color: #f49832;
+}
+
+.navbar-item img {
+    max-height: 3.75rem !important;
+}
+
