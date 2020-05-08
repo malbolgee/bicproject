@@ -1,5 +1,12 @@
 <?php session_start(); ?>
 
+<?php  
+
+    if (!isset($_SESSION['username'])) 
+        die("<meta charset='utf-8'><title></title><script>window.location=('login.php')</script>");
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -19,23 +26,41 @@
                 <a class="navbar-item" href="http://www.feriasbic.rf.gd/admin.php">
                     <img src="img/bic-logo-1.png" width="112" height="28">
                 </a>
+                <a role = 'button' class = "navbar-burger burger" aria-label = 'menu' aria-expanded = 'false' data-target= "navMenu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+
             </div>
 
-            <div class="navbar-menu">
+            <div id="NavMenu" class= "navbar-menu">
+
                 <div class="navbar-start">
                     <a class="navbar-item" href = "admin.php">Alterar Cadastro</a>
                     <a class="navbar-item" href = "#">Inserir Cadastro</a>
                 </div>
-            </div>
 
-            <div class="navbar-end">
-                <div class="navbar-item">
-                    <div class="buttons">
-                    <a class="button is-primary" href = "inclusoes/report.php">
-                        <strong>Gerar Relatório</strong>
-                    </a>
+                <div class="navbar-end">
+
+                    <div class="navbar-item">
+                        <p>Olá, <?php echo $_SESSION['username'] ?></p>
                     </div>
+
+                    <div class="navbar-item">
+                        <img class="is-rounded" src= <?php echo $_SESSION['perfil']; ?> width = '48' height = '48'>
+                    </div>
+
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-danger" href = "inclusoes/logout.inc.php">
+                                <strong>Logout</strong>
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
 
         </nav>
@@ -360,5 +385,6 @@
         </section>
 
     </body>
-    <script type="text/javascript" src="js/app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/admin-menu.js"></script>
 </html>
