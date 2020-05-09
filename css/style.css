@@ -22,3 +22,9 @@
     max-height: 3.75rem !important;
 }
 
+.is-user-picture:hover{
+
+    transform: scale(1.09) !important;
+    transition: .3s !important;
+
+}
