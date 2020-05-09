@@ -32,6 +32,7 @@
                     if (password_verify($this->pwd, $rowUser['pwd']))
                     {
 
+                        $this->id = $rowUser['id'];
                         $this->matricula = $rowUser['matricula'];
                         $this->username = $rowUser['username'];
                         $this->email = $rowUser['email'];
@@ -68,8 +69,7 @@
                 $hashedpwd = password_hash($this->pwd, PASSWORD_DEFAULT);
 
                 $registro = date('Y-m-d H:i:s');
-                $result = $stmt->execute([$this->matricula, $this->username, $this->email, $hashedpwd, $registro]);
-
+                $stmt->execute([$this->matricula, $this->username, $this->email, $hashedpwd, $registro]);
 
             }
             catch(PDOException $exe)
@@ -80,6 +80,52 @@
 
             }
 
+        }
+
+        public function fullUser()
+        {
+
+            try
+            {
+
+                $sql = "SELECT * FROM usuarios WHERE id='$this->id';";
+                $stmt = $this->connect()->query($sql);
+                $rowUser = $stmt->fetch();
+
+                $this->username = $rowUser['username'];
+                $this->matricula = $rowUser['matricula'];
+                $this->email = $rowUser['email'];
+                $this->perfil = $rowUser['perfil'];
+
+            }
+            catch (PDOException $e)
+            {
+
+                echo 'Connection failed: ' . $e->getMessage();
+                die();
+
+            }
+
+        }
+
+        public function updateFoto()
+        {
+
+            try
+            {
+
+                $sql = "UPDATE usuarios SET perfil='$this->perfil' WHERE id='$this->id';";
+                $stmt = $this->connect()->query($sql);
+
+            }
+            catch (PDOException $e)
+            {
+
+                echo 'Connection failed: ' . $e->getMessage();
+                die();
+
+            }
+           
         }
 
         public static function get_user($matricula, $username, $email)
@@ -116,8 +162,6 @@
 
             }
 
-
         }
-
 
     }
