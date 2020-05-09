@@ -2,7 +2,7 @@
 
 <?php  
 
-    if (!isset($_SESSION['username'])) 
+    if (!isset($_SESSION['id'])) 
         die("<meta charset='utf-8'><title></title><script>window.location=('login.php')</script>");
 
 ?>
@@ -16,13 +16,14 @@
         require "inclusoes/head.php"; 
         
     ?>
-
+    
     <body>
 
         <!-- Início Menu -->
-        <nav class="navbar" role="navigation" aria-label="main navigation">
+        <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
 
             <div class="navbar-brand">
+
                 <a class="navbar-item" href="http://www.feriasbic.rf.gd/admin.php">
                     <img src="img/bic-logo-1.png" width="112" height="28">
                 </a>
@@ -39,6 +40,7 @@
                 <div class="navbar-start">
                     <a class="navbar-item" href = "admin.php">Alterar Cadastro</a>
                     <a class="navbar-item" href = "#">Inserir Cadastro</a>
+                    <a class="navbar-item" href = "#">Dashboard</a>
                 </div>
 
                 <div class="navbar-end">
@@ -48,7 +50,37 @@
                     </div>
 
                     <div class="navbar-item">
-                        <img class="is-rounded" src= <?php echo $_SESSION['perfil']; ?> width = '48' height = '48'>
+                        <figure class="image is-48x48">
+                            <img id = 'user-profile-picture' class="is-rounded is-user-picture" src= <?php echo $_SESSION['perfil']; ?>>
+                        </figure>
+                        <div class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <box class="box">
+
+                                    <form action = 'controllers/users.contr.php' method = 'POST' enctype = 'multipart/form-data'>
+                                        <input id = 'user-choose-picturev' required type="file" name = 'file' accept = 'image/*' hidden = "hidden">
+                                        <div class="field is-horizontal">
+                                            <div class="field-body">
+                                                <div class = "field">
+                                                    <p class = "control">
+                                                        <button id = 'user-choose-picture' class = 'button is-success is-normal'>Escolher</button>
+                                                    </p>
+                                                </div>
+                                                <div class = "field">
+                                                    <p class = "control">
+                                                <button type = 'submit' class = 'button is-success is-normal'>Upload</button>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <input type="hidden" name="op" value = 'updatephoto'>
+                                    </form>
+
+                                </box>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="navbar-item">
@@ -80,9 +112,9 @@
                                     $error = $_SESSION['error'];
 
                                     if ($error == 'nouser')
-                                        echo "<div id = 'notification' class='notification is-danger'><button class = 'delete' ></button><p>Cadastro não encontrado.</p></div>";
+                                        echo "<div id = 'notification' class='notification is-danger'><button class = 'delete' onclick='button_fade_close()'></button><p>Cadastro não encontrado.</p></div>";
                                     else if ($error == 'nobind' || $error == 'noprepare')
-                                        echo "<div id = 'notification' class='notification is-danger'><button class = 'delete' ></button><p>Ocorreu um erro interno. Tente novamente.</p></div>";
+                                        echo "<div id = 'notification' class='notification is-danger'><button class = 'delete' onclick='button_fade_close()'></button><p>Ocorreu um erro interno. Tente novamente.</p></div>";
                                                             
                                     unset($_SESSION['error']);
 
@@ -90,7 +122,7 @@
                                 else if (isset($_SESSION['success']))
                                 {
 
-                                    echo "<div id = 'notification' class='notification is-success'><button class = 'delete' ></button><p>Alteração realizada com sucesso!</p></div>";
+                                    echo "<div id = 'notification' class='notification is-success'><button class = 'delete' onclick='button_fade_close()'></button><p>Alteração realizada com sucesso!</p></div>";
                                     unset($_SESSION['success']);
 
                                 }
@@ -362,10 +394,10 @@
                                                         
                                                         if (isset($_SESSION['result']))
                                                             echo "<button id = 'modify-btn-submit' name = 'modify-btn-submit' type = 'submit' class = 'button is-normal is-success' formaction = 'inclusoes/modify.php'>Alterar</button>
-                                                                  <a id = 'cancel-search-btn' class = 'button is-normal is-danger' onclick = 'cancel_event()'>Cancelar</a>";
+                                                                  <span id = 'cancel-search-btn' class = 'button is-normal is-danger' onclick = 'cancel_event()'>Cancelar</span>";
                                                         else
                                                             echo "<button id = 'modify-btn-submit'  type = 'submit' class = 'button is-normal is-success' disabled >Alterar</button>
-                                                                  <a id = 'cancel-search-btn' class = 'button is-normal is-danger'>Cancelar</a>";
+                                                                  <span id = 'cancel-search-btn' class = 'button is-normal is-danger'>Cancelar</span>";
 
                                                     ?>
                                                 </p>
@@ -387,4 +419,5 @@
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/admin-menu.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 </html>
