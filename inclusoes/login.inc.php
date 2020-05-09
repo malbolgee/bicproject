@@ -1,6 +1,5 @@
 <?php
 
-
     if (isset($_POST['login-submit']))
     {
 
@@ -25,7 +24,6 @@
             $user->email = $login;
             $user->pwd = $pwd;
 
-
             if (!$user->auth())
             {
 
@@ -37,12 +35,11 @@
             {
 
                 session_start();
+                $_SESSION['id'] = $user->id;
                 $_SESSION['username'] = $user->username;
                 $_SESSION['matricula'] = $user->matricula;
                 $_SESSION['perfil'] = $user->perfil;
                 
-                // var_dump($_SESSION['perfil']);
-
                 header("Location: ../admin.php");
                 exit();
 
