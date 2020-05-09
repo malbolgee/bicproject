@@ -7,7 +7,7 @@
 
         $url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
-        if (strpos($url, 'inclusoes') !== false)
+        if (strpos($url, 'inclusoes') !== false || strpos($url, 'controllers') !== false)
             $path = '../class/';
         else
             $path = 'class/';
