@@ -10,7 +10,7 @@
 
 <body>
 
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
 
         <div class="navbar-brand">
             <a class="navbar-item" href="#">
@@ -36,7 +36,7 @@
                         <form method = 'post' action = 'inclusoes/signup.inc.php'>
                             <div class="field">
                                 <div class="control">
-                                    <input name = 'matricula' type="text" class="input is-medium" placeholder = 'Matrícula' maxlenght = '4' required  autofocus />
+                                    <input name = 'matricula' type="text" class="input is-medium" placeholder = 'Matrícula' maxlength = '4' required  autofocus />
                                 </div>
                             </div>
                             <div class="field">
@@ -69,3 +69,5 @@
     </section>
 
 </body>
+<script type="text/javascript" src="js/signup-page.js"></script>
+</html>
