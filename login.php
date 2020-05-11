@@ -1,3 +1,12 @@
+<?php session_start(); ?>
+
+<?php
+
+    if (isset($_SESSION['id']))
+        header("Location: admin.php");
+
+?> 
+
 <!DOCTYPE html>
 <html>
 
@@ -36,14 +45,20 @@
                         <form method = 'post' action = 'inclusoes/login.inc.php'>
 
                             <div class="field">
-                                <div class="control">
+                                <div class="control has-icons-left">
                                     <input name = 'login' type="text" class="input is-large" placeholder = 'matrícula ou email ou username' required autofocus />
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-user"></i>
+                                    </span>
                                 </div>
                             </div>
                             
                             <div class="field">
-                                <div class="control">
+                                <div class="control has-icons-left">
                                     <input name = 'pwd' type="password" class="input is-large" minlength = '6' placeholder = 'Insira sua senha' required />
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-key"></i>
+                                    </span>
                                 </div>
                             </div>
                            
@@ -57,3 +72,8 @@
     </section>
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="plugins/fontawesome/js/all.min.js"></script>
+<script type="text/javascript" src="js/login-page.js"></script>
+</html>
