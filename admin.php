@@ -10,12 +10,15 @@
 <!DOCTYPE html>
 <html>
 
+    <link rel="stylesheet" href="css/croppie.css">
     <?php 
 
         $page_title = "Alteração de Cadastro";
         require "inclusoes/head.php"; 
         
     ?>
+
+    <link rel="stylesheet" href="plugins/fontawesome/css/all.min.css">
     
     <body>
 
@@ -51,36 +54,8 @@
 
                     <div class="navbar-item">
                         <figure class="image is-48x48">
-                            <img id = 'user-profile-picture' class="is-rounded is-user-picture" src= <?php echo $_SESSION['perfil']; ?>>
+                            <img id = 'user-profile-picture' class="is-rounded is-user-picture" src= <?php echo $_SESSION['perfil']; ?> />
                         </figure>
-                        <div class="modal">
-                            <div class="modal-background"></div>
-                            <div class="modal-content">
-                                <box class="box">
-
-                                    <form action = 'controllers/users.contr.php' method = 'POST' enctype = 'multipart/form-data'>
-                                        <input id = 'user-choose-picturev' required type="file" name = 'file' accept = 'image/*' hidden = "hidden">
-                                        <div class="field is-horizontal">
-                                            <div class="field-body">
-                                                <div class = "field">
-                                                    <p class = "control">
-                                                        <button id = 'user-choose-picture' class = 'button is-success is-normal'>Escolher</button>
-                                                    </p>
-                                                </div>
-                                                <div class = "field">
-                                                    <p class = "control">
-                                                <button type = 'submit' class = 'button is-success is-normal'>Upload</button>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <input type="hidden" name="op" value = 'updatephoto'>
-                                    </form>
-
-                                </box>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="navbar-item">
@@ -97,6 +72,26 @@
 
         </nav>
         <!-- Fim Menu -->
+
+        <!-- Início Modal de crop de imagem -->
+        <div id = 'modal-div' class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <span id = 'is-btn-modal-close' class = 'hovicon effect-6'>
+                        <i class="fas fa-arrow-left fa-2x"></i>
+                    </span>
+                    <p class="modal-card-title has-text-centered">Editar mídia</p>
+                    <input type='file' id = 'userfile' accept = 'image/*' hidden = 'hidden'>
+                    <button id = 'crop-accept-upload' class="button is-success is-normal" >Aplicar</button>
+                </header>
+                <section class="modal-card-body">
+                    <div id = 'image_demo' class = 'image-crop-preview' src = ''></div>
+                </section>
+                <footer id = 'modal-footer-slider' class="modal-card-foot is-footer"></footer>
+            </div>
+        </div>
+        <!-- Fim do Modal de crop de imagem -->
 
         <section class = "hero is-sucess is-fullheight">
             <div class = "hero-body">
@@ -418,6 +413,9 @@
 
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/exif.js"></script>
+    <script src="js/croppie.min.js"></script>
+    <script src="plugins/fontawesome/js/all.min.js"></script>
     <script type="text/javascript" src="js/admin-menu.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
 </html>
