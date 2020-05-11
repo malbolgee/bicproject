@@ -18,8 +18,12 @@
     background-color: #f49832;
 }
 
-.navbar-item img {
+/* .navbar-item img {
     max-height: 3.75rem !important;
+} */
+
+.is-user-picture {
+    cursor: pointer;
 }
 
 .is-user-picture:hover{
@@ -27,4 +31,91 @@
     transform: scale(1.09) !important;
     transition: .3s !important;
 
+}
+
+.is-footer {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+}
+
+.is-span-icon-left {
+
+    color: #64bb5d;
+    padding-right: 10px;
+
+}
+
+.is-span-icon-right {
+
+    color: #64bb5d;
+    padding-left: 10px;
+
+}
+
+.hovicon.effect-6 {
+
+    -webkit-transition: background 0.2s, color 0.2s;
+    -moz-transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 10px 10px;    
+}
+.hovicon.effect-6:hover {
+    
+    background: rgba(255, 255, 255, 1);
+    color: #64bb5d;
+}
+.hovicon.effect-6:hover i {
+    color: #64bb5d;
+}
+.hovicon.effect-6:hover::before {
+    -webkit-animation: spinAround 2s linear infinite;
+    -moz-animation: spinAround 2s linear infinite;
+    animation: spinAround 2s linear infinite;
+}
+
+.cr-slider {
+
+    -webkit-appearance: none;
+    width: 300px;
+    max-width: 100%;
+    padding-top: 8px;
+    padding-bottom: 4px;
+    background-color: transparent;
+
+}
+
+.modal-card-head {
+
+    align-items: center;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: flex-start;
+    padding: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    position: relative;
+
+}
+
+.modal-card-foot {
+    align-items: center;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: flex-start;
+    padding: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    position: relative;
 }
