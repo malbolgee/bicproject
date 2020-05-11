@@ -88,6 +88,7 @@ $(document).ready(function(){
         }
 
         fileReader.readAsDataURL(this.files[0]);
+
         $('.modal').toggleClass('is-active');
 
         });
@@ -105,6 +106,8 @@ $(document).ready(function(){
                     success: function(data){
                         $('#modal-div').fadeOut('slow', function(){
                             $('#user-profile-picture').attr('src', data);
+                            $('.modal').toggleClass('is-active');
+                            $('.modal').css('display', '');
                         });
                         
                     }
