@@ -18,8 +18,6 @@
         
     ?>
 
-    <link rel="stylesheet" href="plugins/fontawesome/css/all.min.css">
-    
     <body>
 
         <!-- Início Menu -->
@@ -415,7 +413,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="js/exif.js"></script>
     <script src="js/croppie.min.js"></script>
-    <script src="plugins/fontawesome/js/all.min.js"></script>
+    <script src="plugins/fontawesome/js/fontawesome.min.js"></script>
+    <script src="plugins/fontawesome/js/solid.min.js"></script>
+    <script src="plugins/fontawesome/js/regular.min.js"></script>
     <script type="text/javascript" src="js/admin-menu.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
 </html>
