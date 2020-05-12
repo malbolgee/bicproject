@@ -89,7 +89,7 @@ function query_infos()
     var cpf = document.getElementById('cpf_').value;
     var matricula = document.getElementById('matricula_').value;
 
-    axios.get('http://localhost/bicproject/includes/query.php?info=1&matricula=' + matricula + '&cpf=' + cpf).
+    axios.get('http://localhost/bicproject/inclusoes/query.php?info=1&matricula=' + matricula + '&cpf=' + cpf).
         then(function(response){
 
             var item = response.data;
