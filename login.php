@@ -74,6 +74,7 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="plugins/fontawesome/js/all.min.js"></script>
+<script src="plugins/fontawesome/js/fontawesome.min.js"></script>
+<script src="plugins/fontawesome/js/solid.min.js"></script>
 <script type="text/javascript" src="js/login-page.js"></script>
 </html>
