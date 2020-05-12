@@ -9,5 +9,8 @@
     <link rel="stylesheet" href="css/bulma.min.css" />
     <link rel="stylesheet" href="css/login.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="plugins/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" href="plugins/fontawesome/css/regular.min.css">
 
 </head>
