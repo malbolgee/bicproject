@@ -1,9 +1,10 @@
 <?php
 
-    if (isset($_POST['signup-submit']))
+    function user_signup() 
     {
 
-        require 'autoloader.inc.php';
+        require_once '../class/dbh.class.php';
+        require_once '../class/user.class.php';
 
         $matricula = $_POST['matricula'];
         $username = $_POST['username'];
@@ -12,40 +13,15 @@
         $rpwd = $_POST['rpwd'];
 
         if (empty($matricula) || empty($username) || empty($email) || empty($pwd) || empty($rpwd))
-        {
-
-            header("Location: ../signup.php?error=empytfields&username=" . $username . "&email=" . $email);
-            exit();
-
-        }
-        else if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username))
-        {
-
-            header("Location: ../signup.php?error=invalidemailandusername");
-            exit();
-
-        }
+            return 'emptyfields';
         else if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-        {
-
-            header("Location: ../signup.php?error=invalidemail&username=" . $username);
-            exit();
-
-        }
+            return 'invalidemail';
         else if (!preg_match("/^[a-zA-Z0-9]*$/", $username))
-        {
-
-            header("Location: ../signup.php?error=invalidusername&email=" . $email);
-            exit();
-
-        }
+            return 'invalidusername';
+        else if (strlen(($pwd) < 6))
+            return 'nolength';
         else if ($pwd != $rpwd)
-        {
-
-            header("Location: ../signup.php?error=passwordcheck&email=" . $amil . "&username=" . $username);
-            exit();
-
-        }
+            return 'pwdnotmatch';
         else
         {
 
@@ -58,27 +34,18 @@
                 $user->email = $email;
                 $user->pwd = $pwd;
                 
-                $user->insert_user();
-                header("Location: ../signup.php?signup=success");
-                exit();
+                // $user->insert_user();
+                return 'signupsuccess';
 
             }
             else
-            {
-                
-                // A mensagem de erro padrão vai ser que o usuário já está cadastrado;
-                // Mas não será dito qual é o campo que já existe no banco (por motivos de segurança);
-                header("Location: ../signup.php?error=usertaken");
-                exit();
-
-            }
+                return 'signuperror';
 
         }
 
-    }
-    else
-    {
-        header('Location: ../signup.php?error');
-        exit();
-    }
+        return 'simpleerror';
 
+    }
+    
+    if (isset($_POST['signup']))
+        echo json_encode(user_signup());
