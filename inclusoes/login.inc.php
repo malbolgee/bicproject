@@ -1,20 +1,18 @@
 <?php
 
-    if (isset($_POST['login-submit']))
+    function user_login()
     {
 
-        require_once 'autoloader.inc.php';
+        require_once '../class/dbh.class.php';
+        require_once '../class/user.class.php';
 
-        $login = $_POST['login'];
+        $login = $_POST['info'];
         $pwd = $_POST['pwd'];
         
         if (empty($login) || empty($pwd))
-        {
-
-            header("Location: ../login.php?error=emptyfields");
-            exit();
-
-        }
+            return 'emptyfields';
+        else if (!preg_match("/^[a-zA-Z0-9@]*$/", $login))
+            return 'forbiddenchar';
         else
         {
 
@@ -25,12 +23,7 @@
             $user->pwd = $pwd;
 
             if (!$user->auth())
-            {
-
-                header("Location: ../login.php?error=nouser");
-                exit();
-
-            }
+                return 'nouser';
             else
             {
 
@@ -40,18 +33,13 @@
                 $_SESSION['matricula'] = $user->matricula;
                 $_SESSION['perfil'] = $user->perfil;
                 
-                header("Location: ../admin.php");
-                exit();
+                return 'loginsuccess';
 
             }
 
         }
 
     }
-    else
-    {
 
-        header("Location: ../login.php");
-        exit();
-
-    }
+    if (isset($_POST['login']))
+        echo json_encode(user_login());
