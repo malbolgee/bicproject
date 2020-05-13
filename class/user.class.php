@@ -115,7 +115,7 @@
             {
 
                 $sql = "UPDATE usuarios SET perfil='$this->perfil' WHERE id='$this->id';";
-                $stmt = $this->connect()->query($sql);
+                $this->connect()->query($sql);
 
             }
             catch (PDOException $e)
@@ -145,12 +145,12 @@
 
                 $result = $stmt->fetch();
 
+                unset($db);
+
                 if ($result)
                     return false;
                 else
                     return true;
-
-                unset($db);
                 
             }
             catch (PDOException $e)
