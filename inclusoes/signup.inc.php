@@ -18,7 +18,7 @@
             return 'invalidemail';
         else if (!preg_match("/^[a-zA-Z0-9]*$/", $username))
             return 'invalidusername';
-        else if (strlen(($pwd) < 6))
+        else if (strlen(($pwd)) < 6)
             return 'nolength';
         else if ($pwd != $rpwd)
             return 'pwdnotmatch';
@@ -34,12 +34,12 @@
                 $user->email = $email;
                 $user->pwd = $pwd;
                 
-                // $user->insert_user();
+                $user->insert_user();
                 return 'signupsuccess';
 
             }
             else
-                return 'signuperror';
+                return 'usertaken';
 
         }
 
