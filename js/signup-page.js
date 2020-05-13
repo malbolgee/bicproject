@@ -102,6 +102,8 @@ $(document).ready(function(){
 
         if (!matricula || !username || !email || !pwd || !rpwd)
             show_error_notification('Nenhum campo pode ficar vazio!');
+        else if (!(/^[0-9]*$/.exec(matricula)))
+            show_error_notification('Só números são permitidos na matrícula');
         else if (!(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.exec(email)))
             show_error_notification('Email inválido!');
         else if (!(/^[0-9A-Za-z]*$/.exec(username)))
@@ -139,8 +141,10 @@ $(document).ready(function(){
                     show_error_notification('Senhas não conferem!');
                 else if (result_data == 'nolength')
                     show_error_notification('Senha curta demais!');
-                else if (result_data == 'signuperror' || result_data == 'simpleerror')
-                    show_error_notification('Um erro interno ocorreu :(');
+                else if (result_data == 'usertaken')
+                    show_error_notification('Usuário indisponível!');
+                else if (result_data == 'simpleerror')
+                    show_error_notification('Ocorreu um erro interno :(');
 
             })
 
