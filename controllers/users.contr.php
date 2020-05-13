@@ -1,6 +1,7 @@
 <?php
 
-    require '../inclusoes/autoloader.inc.php';
+    require_once '../class/dbh.class.php';
+    require_once '../class/user.class.php';
 
     function update_user_picture()
     {
