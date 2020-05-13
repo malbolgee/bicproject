@@ -1,189 +1,296 @@
-function username_validation()
-{
+$(document).ready(function(){
 
-    var div_field = document.getElementById('div-field-username');
-    var username = document.getElementById('username_').value;
-    var username_ = document.getElementById('username_');
-    var div_username = document.getElementById('div-username');
+    $('#username_').on('change', function(){
 
-    axios.get('http://localhost/bicproject/controllers/validation.contr.php?validation=username&username=' + username).
+        var username = document.getElementById('username_').value;
+
+        if (username == '')
+        {
+
+            input_cleanup('username');
+            return;
+
+        }
+
+        if (!(/^[0-9A-Za-z]*$/.exec(username)))
+        {
+
+            $('#username-icon-available').toggleClass('is-hidden', true);
+            $("#username-icon-notavailable").toggleClass('is-hidden', false);
+            $('#username-available-message').toggleClass('is-hidden', true);
+            $('#username-notavailable-message').toggleClass('is-hidden', true);
+            $('#username-notvalid-message').toggleClass('is-hidden', false);
+            $('#username_').toggleClass('is-success', true);
+            $('#username_').toggleClass('is-danger', false);
+
+            return;
+
+        }
+
+        axios.get('http://localhost/bicproject/controllers/validation.contr.php?validation=username&username=' + username).
         then(function(response){
 
-            console.log(response.data);
-            var data = response.data;
-
-            if (data === true)
-            {
-
-                if (!username_.classList.contains('is-success'))
-                {
-
-                    var span = document.createElement('SPAN');
-                    var icon = document.createElement('I');
-                    var paragraph = document.createElement('P');
-                    var help_content = document.createTextNode('Usuário disponível!');
-                    span.classList.add('icon', 'is-small', 'is-right');
-                    icon.classList.add('far', 'fa-check-circle');
-                    paragraph.classList.add('help', 'is-success');
-
-                    span.appendChild(icon);
-                    div_username.appendChild(span);
-                    paragraph.appendChild(help_content);
-
-                    if (username_.classList.contains('is-danger'))
-                        username_.classList.replace('is-danger', 'is-success');
-                    else
-                        username_.classList.add('is-success');
-                    
-                    if (!div_username.classList.contains('has-icons-right'))
-                        div_username.classList.add('has-icons-right');
-
-                    if (div_username.childNodes[5])
-                        div_username.replaceChild(span, div_username.childNodes[5]);
-                    else
-                        div_username.appendChild(span);
-
-                    if (div_field.childNodes[3])
-                        div_field.replaceChild(paragraph, div_field.childNodes[3]);
-                    else
-                        div_field.appendChild(paragraph);
-
-                }
-
-            }
+            if (response.data === true)
+                toggle_input_success('username');
             else
-            {
-
-                var span = document.createElement('SPAN');
-                var icon = document.createElement('I');
-                var paragraph = document.createElement('P');
-                var help_content = document.createTextNode('Usuário indisponível!');
-                span.classList.add('icon', 'is-small', 'is-right');
-                icon.classList.add('fas', 'fa-exclamation-triangle');
-                paragraph.classList.add('help', 'is-danger');
-
-                span.appendChild(icon);
-                div_username.appendChild(span);
-                paragraph.appendChild(help_content);
-
-                if (username_.classList.contains('is-success'))
-                    username_.classList.replace('is-success', 'is-danger');
-                else
-                    username_.classList.add('is-danger');
-
-                if (!div_username.classList.contains('has-icons-right'))
-                    div_username.classList.add('has-icons-right');
-
-                if (div_username.childNodes[5])
-                    div_username.replaceChild(span, div_username.childNodes[5]);
-                else
-                    div_username.appendChild(span);
-
-                if (div_field.childNodes[3])
-                    div_field.replaceChild(paragraph, div_field.childNodes[3]);
-                else
-                    div_field.appendChild(paragraph);
-
-            }
-
+                toggle_input_error('username');
+               
         })
         .catch(function(error){
             console.log(error);
         });
+
+    });
+
+});
+
+$(document).ready(function()
+{   
+    $('#email_').on('change', function(){
+
+        var email = document.getElementById('email_').value;
+
+        if (email == '')
+        {
+
+            input_cleanup('email');
+            return;
+
+        }
+
+        if (!(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.exec(email)))
+        {
+
+            $('#email-icon-available').toggleClass('is-hidden', true);
+            $("#email-icon-notavailable").toggleClass('is-hidden', false);
+            $('#email-available-message').toggleClass('is-hidden', true);
+            $('#email-notavailable-message').toggleClass('is-hidden', true);
+            $('#email-notvalid-message').toggleClass('is-hidden', false);
+            $('#email_').toggleClass('is-success', true);
+            $('#email_').toggleClass('is-danger', false);
+
+            return;
+
+        }
+
+        axios.get('http://localhost/bicproject/controllers/validation.contr.php?validation=email&email=' + email).
+            then(function(response){
+
+                if (response.data === true)
+                    toggle_input_success('email');
+                else
+                    toggle_input_error('email');
+
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+
+    });
+
+});
+
+$(document).ready(function(){
+    
+    $('#submit-btn').click(function(){
+
+        matricula = $('#matricula_').val();
+        username = $('#username_').val();
+        email = $('#email_').val();
+        pwd = $('#pwd_').val();
+        rpwd = $('#rpwd_').val();
+
+        if (!matricula || !username || !email || !pwd || !rpwd)
+            show_error_notification('Nenhum campo pode ficar vazio!');
+        else if (!(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.exec(email)))
+            show_error_notification('Email inválido!');
+        else if (!(/^[0-9A-Za-z]*$/.exec(username)))
+            show_error_notification('Usuário inválido!');
+        else if (pwd != rpwd)
+            show_error_notification('Senhas não conferem!')
+        else
+        {
+
+            form_data = { signup: true,
+                          matricula: matricula,
+                          username: username,
+                          email:email,
+                          pwd: pwd,
+                          rpwd: rpwd };
+
+            $.ajax({
+                url: 'inclusoes/signup.inc.php',
+                method: 'POST',
+                data: form_data,
+
+            }).done(function(data){
+
+                var result_data = $.parseJSON(data);
+
+                if (result_data == 'signupsuccess')
+                    show_success_notification('Cadastro efetuado com sucesso!');
+                else if (result_data == 'emptyfields')
+                    show_error_notification('Nenhum campo pode ficar vazio!');
+                else if (result_data == 'invalidemail')
+                    show_error_notification('Email inválido!');
+                else if (result_data == 'invalidusername')
+                    show_error_notification('Username inválido!');
+                else if (result_data == 'pwdnotmatch')
+                    show_error_notification('Senhas não conferem!');
+                else if (result_data == 'nolength')
+                    show_error_notification('Senha curta demais!');
+                else if (result_data == 'signuperror' || result_data == 'simpleerror')
+                    show_error_notification('Um erro interno ocorreu :(');
+
+            })
+
+        }
+
+    });
+
+});
+
+$(document).ready(function(){
+
+    $('#pwd_').on('input', function(){
+
+        var pwd_length = $('#pwd_').val();
+
+        if (pwd_length == '')
+        {
+
+            $('#pwd_').toggleClass('is-danger', false);
+            $('#pwd-icon-notlength').toggleClass('is-hidden', true);
+            $('#pwd-notlength-message').toggleClass('is-hidden', true);
+            return;
+
+        }
+
+        if (pwd_length.length < 6)
+        {
+
+            $('#pwd_').toggleClass('is-danger', true);
+            $('#pwd-icon-notlength').toggleClass('is-hidden', false);
+            $('#pwd-notlength-message').toggleClass('is-hidden', false);
+
+        }
+        else
+        {
+
+            $('#pwd_').toggleClass('is-danger', false);
+            $('#pwd-icon-notlength').toggleClass('is-hidden', true);
+            $('#pwd-notlength-message').toggleClass('is-hidden', true);
+
+        }
+
+    });
+
+});
+
+$(document).ready(function(){
+
+    $('#rpwd_').on('input', function(){
+
+        var pwd = $('#pwd_').val();
+        var rpwd = $('#rpwd_').val();
+
+        if (rpwd == '')
+        {
+
+            $('#rpwd_').toggleClass('is-success', false);
+            $('#rpwd_').toggleClass('is-danger', true);
+            $('#rpwd-icon-match').toggleClass('is-hidden', true);
+            $('#rpwd-icon-notmatch').toggleClass('is-hidden', false);
+            $('#rpwd-notmatch-message').toggleClass('is-hidden', false);
+            return;
+
+        }
+
+        if (pwd != rpwd)
+        {
+
+            $('#rpwd_').toggleClass('is-success', false);
+            $('#rpwd_').toggleClass('is-danger', true);
+            $('#rpwd-icon-match').toggleClass('is-hidden', true);
+            $('#rpwd-icon-notmatch').toggleClass('is-hidden', false);
+            $('#rpwd-notmatch-message').toggleClass('is-hidden', false);
+
+        }
+        else
+        {
+
+            $('#rpwd_').toggleClass('is-danger', false);
+            $('#rpwd_').toggleClass('is-success', true);
+            $('#rpwd-icon-notmatch').toggleClass('is-hidden', true);
+            $('#rpwd-icon-match').toggleClass('is-hidden', false);
+            $('#rpwd-notmatch-message').toggleClass('is-hidden', true);
+
+        }
+
+    });
+
+});
+
+function show_error_notification(message)
+{
+
+    $('#notification-error-content').html(message);
+    $('#notification-error').toggleClass('is-hidden', false);
+    setTimeout(() => { $('#notification-error').fadeOut('slow', function(){
+        $('#notification-error').toggleClass('is-hidden', true);
+        $('#notification-error').css('display', '');
+    })}, 2500);
 
 }
 
-function email_validation()
+function show_success_notification(message)
 {
 
-    var div_field = document.getElementById('div-field-email');
-    var email = document.getElementById('email_').value;
-    var email_ = document.getElementById('email_');
-    var div_email = document.getElementById('div-email');
+    $('#notification-success-content').html(message);
+    $('#notification-success').toggleClass('is-hidden', false);
+    setTimeout(() => { $('#notification-success').fadeOut('slow', function(){
+        $('#notification-success').toggleClass('is-hidden', true);
+        $('#notification-success').css('display', '');
+    })}, 2500);
 
-    axios.get('http://localhost/bicproject/controllers/validation.contr.php?validation=email&email=' + email).
-        then(function(response){
+}
 
-            console.log(response.data);
-            var data = response.data;
+function toggle_input_error(field)
+{
 
-            if (data === true)
-            {
+    $('#' + field + '-icon-notavailable').toggleClass('is-hidden', false);
+    $('#' + field + '-icon-available').toggleClass('is-hidden', true);
+    $('#' + field + '-available-message').toggleClass('is-hidden', true);
+    $('#' + field + '_').toggleClass('is-success', false);
+    $('#' + field + '-notvalid-message').toggleClass('is-hidden', true);
+    $('#' + field + '-notavailable-message').toggleClass('is-hidden', false);
+    $('#' + field + '_').toggleClass('is-success', false);
+    $('#' + field + '_').toggleClass('is-danger', true);
 
-                if (!email_.classList.contains('is-success'))
-                {
+}
 
-                    var span = document.createElement('SPAN');
-                    var icon = document.createElement('I');
-                    var paragraph = document.createElement('P');
-                    var help_content = document.createTextNode('Email disponível!');
-                    span.classList.add('icon', 'is-small', 'is-right');
-                    icon.classList.add('far', 'fa-check-circle');
-                    paragraph.classList.add('help', 'is-success');
+function toggle_input_success(field)
+{
 
-                    span.appendChild(icon);
-                    div_email.appendChild(span);
-                    paragraph.appendChild(help_content);
+    $('#' + field + '-icon-notavailable').toggleClass('is-hidden', true);
+    $('#' + field + '-icon-available').toggleClass('is-hidden', false);
+    $('#' + field + '-notavailable-message').toggleClass('is-hidden', true);
+    $('#' + field + '-notvalid-message').toggleClass('is-hidden', true);
+    $('#' + field + '-available-message').toggleClass('is-hidden', false);
+    $('#' + field + '_').toggleClass('is-danger', false);
+    $('#' + field + '_').toggleClass('is-success', true);
 
-                    if (email_.classList.contains('is-danger'))
-                        email_.classList.replace('is-danger', 'is-success');
-                    else
-                        email_.classList.add('is-success');
-                    
-                    if (!div_email.classList.contains('has-icons-right'))
-                        div_email.classList.add('has-icons-right');
+}
 
-                    if (div_email.childNodes[5])
-                        div_email.replaceChild(span, div_email.childNodes[5]);
-                    else
-                        div_email.appendChild(span);
+function input_cleanup(field)
+{
 
-                    if (div_field.childNodes[3])
-                        div_field.replaceChild(paragraph, div_field.childNodes[3]);
-                    else
-                        div_field.appendChild(paragraph);
-
-                }
-
-            }
-            else
-            {
-
-                var span = document.createElement('SPAN');
-                var icon = document.createElement('I');
-                var paragraph = document.createElement('P');
-                var help_content = document.createTextNode('Email indisponível!');
-                span.classList.add('icon', 'is-small', 'is-right');
-                icon.classList.add('fas', 'fa-exclamation-triangle');
-                paragraph.classList.add('help', 'is-danger');
-
-                span.appendChild(icon);
-                div_email.appendChild(span);
-                paragraph.appendChild(help_content);
-
-                if (email_.classList.contains('is-success'))
-                    email_.classList.replace('is-success', 'is-danger');
-                else
-                    email_.classList.add('is-danger');
-
-                if (!div_email.classList.contains('has-icons-right'))
-                    div_email.classList.add('has-icons-right');
-
-                if (div_email.childNodes[5])
-                    div_email.replaceChild(span, div_email.childNodes[5]);
-                else
-                    div_email.appendChild(span);
-
-                if (div_field.childNodes[3])
-                    div_field.replaceChild(paragraph, div_field.childNodes[3]);
-                else
-                    div_field.appendChild(paragraph);
-
-            }
-
-        })
-        .catch(function(error){
-            console.log(error);
-        });
+    $('#'+ field + '_').toggleClass('is-danger', false);
+    $('#'+ field + '_').toggleClass('is-success', false);
+    $('#'+ field + '-icon-available').toggleClass('is-hidden', true);
+    $('#'+ field + '-icon-notavailable').toggleClass('is-hidden', true);
+    $('#'+ field + '-available-message').toggleClass('is-hidden', true);
+    $('#'+ field + '-notavailable-message').toggleClass('is-hidden', true);
+    $('#'+ field + '-notvalid-message').toggleClass('is-hidden', true);
 
 }
