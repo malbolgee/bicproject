@@ -80,49 +80,54 @@
                         <div id = 'notification-success' class="notification is-success is-hidden"></div>
 
                         <!-- Começo dos três primeiros Campos -->
-                        <div class="field is-horizontal">
-                            <div class="field-body">
-
-                                <div class="field">
-                                    <p class="control">
-                                        <input id='matricula' class='input' type='number' value='' placeholder='Matricula' autofocus />
-                                    </p>
-                                    <p class="help">Matriícula</p>
-                                </div>
-
-                                <div class="field">
-                                    <p class="control">
-                                        <input id='nome' class='input' type='text' value='' oninput="let p = this.selectionStart; this.value = this.value.toUpperCase();this.setSelectionRange(p, p);" />
-                                    </p>
-                                    <p class="help">Nome</p>
-                                </div>
-                                <div class="field">
-                                    <p class="control">
-                                        <input id='cpf' class='input' value='' type='text' />
-                                    </p>
-                                    <p class="help">CPF</p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!-- Fim dos três primeiros campos -->
-
-                        <div class="field is-horizontal">
-                            <div class="field-body">
-                                <div class="field is-narrow">
-                                    <div class="control is-expanded">
-                                        <div class="select is-fullwidth">
-                                            <select id='programacao'>
-                                                <option value='Férias Normais'>Férias Normais</option>
-                                                <option value='Antecipação de Férias'>Antecipação de Férias</option>
-                                                <option value='Férias Não Programadas'>Férias Não Programadas</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <form>
                             <div class="field is-horizontal">
                                 <div class="field-body">
+
+                                    <div class="field">
+                                        <div class="control">
+                                            <p class="control">
+                                                <input id='matricula' class='input' type='number' value='' placeholder='Matricula' autofocus />
+                                            </p>
+                                            <p class="help">Matriícula</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="field">
+                                        <div class="control">
+                                            <p class="control">
+                                                <input id='nome' class='input' type='text' value='' oninput="let p = this.selectionStart; this.value = this.value.toUpperCase();this.setSelectionRange(p, p);" />
+                                            </p>
+                                            <p class="help">Nome</p>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <div class="control">
+                                            <p class="control">
+                                                <input id='cpf' class='input' value='' type='text' />
+                                            </p>
+                                            <p class="help">CPF</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- Fim dos três primeiros campos -->
+
+                            <div class="field is-horizontal">
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control is-expanded">
+                                            <div class="select is-fullwidth">
+                                                <select id='programacao'>
+                                                    <option value='Férias Normais'>Férias Normais</option>
+                                                    <option value='Antecipação de Férias'>Antecipação de Férias</option>
+                                                    <option value='Férias Não Programadas'>Férias Não Programadas</option>
+                                                </select>
+                                            </div>
+                                            <p class="help">Tipo de Férias</p>
+                                        </div>
+                                    </div>
                                     <div class="field">
                                         <div class="control">
                                             <p class="control">
@@ -149,64 +154,63 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="field is-horizontal">
-                            <div class="field-body">
-                                <div class="field">
-                                    <div class="control">
-                                        <p class="control">
-                                            <input id='inicio_ferias' class='input' value='' type='date' max = '2050-12-31' min = '1960-12-31' />
-                                        </p>
-                                        <p class="help">Início Férias</p>
+                            <div class="field is-horizontal">
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <p class="control">
+                                                <input id='inicio_ferias' class='input' value='' type='date' max = '2050-12-31' min = '1960-12-31' />
+                                            </p>
+                                            <p class="help">Início Férias</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="field">
-                                    <div class="control">
-                                        <p class="control">
-                                            <input id='fim_ferias' class='input' value='' type='date' max = '2050-12-31' min = '1960-12-31' />
-                                        </p>
-                                        <p class="help">Fim Férias</p>
+                                    <div class="field">
+                                        <div class="control">
+                                            <p class="control">
+                                                <input id='fim_ferias' class='input' value='' type='date' max = '2050-12-31' min = '1960-12-31' />
+                                            </p>
+                                            <p class="help">Fim Férias</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="field">
-                                    <div class="control">
-                                        <p class="control">
-                                            <input id='ferias' type='number' class='input' value='' maxlength='2' />
-                                        </p>
-                                        <p class="help">Férias</p>
+                                    <div class="field">
+                                        <div class="control">
+                                            <p class="control">
+                                                <input id='ferias' type='number' class='input' value='' maxlength='2' />
+                                            </p>
+                                            <p class="help">Dias de Férias</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="field">
-                                    <div class="control">
-                                        <p class="control">
-                                            <input id='pagamento' class='input' value='' type='date' max = '2050-12-31' min = '1960-12-31' />
-                                        </p>
-                                        <p class="help">Pagamento</p>
+                                    <div class="field">
+                                        <div class="control">
+                                            <p class="control">
+                                                <input id='pagamento' class='input' value='' type='date' max = '2050-12-31' min = '1960-12-31' />
+                                            </p>
+                                            <p class="help">Pagamento</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="field">
-                                    <div class="control">
-                                        <p class="control">
-                                            <input id='retorno_ferias' class='input' value='' type='date' max = '2050-12-31' min = '1960-12-31' />
-                                        </p>
-                                        <p class="help">Retorno</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="field is-horizontal">
-                            <div class="field-body">
-                                <div class="field is-grouped is-grouped-centered">
-                                    <div class="control">
-                                        <p class="control">
-                                            <button id='insert-btn' class='button is-normal is-success'>Cadastrar</button>
-                                            <button id='cancel-btn' class='button is-normal is-danger'>Limpar</button>
-                                        </p>
+                                    <div class="field">
+                                        <div class="control">
+                                            <p class="control">
+                                                <input id='retorno_ferias' class='input' value='' type='date' max = '2050-12-31' min = '1960-12-31' />
+                                            </p>
+                                            <p class="help">Retorno</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
+                            <div class="field is-horizontal">
+                                <div class="field-body">
+                                    <div class="field is-grouped is-grouped-centered">
+                                        <div class="control">
+                                            <p class="control">
+                                                <button id='insert-btn' type = 'submit' class='button is-normal is-success'>Cadastrar</button>
+                                                <button id='cancel-btn' class='button is-normal is-danger'>Limpar</button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
