@@ -70,7 +70,7 @@
     </nav>
     <!-- Fim Menu -->
 
-    <section class="hero is-sucess is-fullheight">
+    <section class="hero has-background-light is-fullheight">
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="column is-10 is-offset-1">
@@ -104,7 +104,7 @@
                                     <div class="field">
                                         <div class="control">
                                             <p class="control">
-                                                <input id='cpf' class='input' value='' type='text' />
+                                                <input id='cpf' class='input' value='' type='text' maxlength = '11' />
                                             </p>
                                             <p class="help">CPF</p>
                                         </div>
