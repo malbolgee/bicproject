@@ -36,7 +36,7 @@ require 'inclusoes/head.php';
 
     </nav>
 
-    <section class="hero is-success is-fullheight">
+    <section class="hero has-background-light is-fullheight">
         <div class="hero-body">
             <div class="container">
                 <div class="column is-4 is-offset-4">
