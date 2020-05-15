@@ -91,7 +91,7 @@
     </div>
     <!-- Fim do Modal de crop de imagem -->
 
-    <section class="hero is-sucess is-fullheight">
+    <section class="hero has-background-light is-fullheight">
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="column is-10 is-offset-1">
@@ -379,7 +379,5 @@
 <script src="plugins/fontawesome/js/fontawesome.min.js"></script>
 <script src="plugins/fontawesome/js/solid.min.js"></script>
 <script src="plugins/fontawesome/js/regular.min.js"></script>
-<script type="text/javascript" src="js/admin-menu.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
-
+<script type="text/javascript" src="js/admin-page.js"></script>
 </html>
