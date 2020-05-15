@@ -40,7 +40,7 @@
 
                 <div class="navbar-start">
                     <a class="navbar-item" href = "admin.php">Alterar Cadastro</a>
-                    <a class="navbar-item" href = "#">Inserir Cadastro</a>
+                    <a class="navbar-item" href = "inserir.php">Inserir Cadastro</a>
                     <a class="navbar-item" href = "#">Dashboard</a>
                 </div>
 
