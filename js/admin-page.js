@@ -5,7 +5,7 @@ $(document).ready(function(){
     });
 });
 
-document.getElementById('user-profile-picture').addEventListener('click', function(){
+document.getElementById('user-profile-picture').addEventListener('click', () => {
     document.getElementById('userfile').click();
 })
 
@@ -117,4 +117,61 @@ $(document).ready(function(){
 
         });
 
-    }); 
+    });
+
+function input_search_event(x)
+{
+
+    var search_btn = document.getElementById('search-btn-submit');
+    var input_matricula = document.getElementById('input-matricula');
+
+    if (x.length < 3)
+    {
+
+        search_btn.disabled = true;
+        input_matricula.classList.remove('is-success');
+
+    }
+    else
+    {
+
+        search_btn.disabled = false;
+        input_matricula.classList.add('is-success');
+
+    }
+
+}
+
+function search_btn_event()
+{
+
+    var modify_btn_submit = document.getElementById('modify-btn-submit');
+    modify_btn_submit.disabled = true;
+
+}
+
+function button_fade_close()
+{
+
+    $('.delete').click(function(){
+        $('.delete').fadeOut('slow', 'swing');
+        $('#notification').fadeOut('slow', 'swing');
+
+    });
+
+}
+
+function cancel_event()
+{   
+
+    var element = document.querySelectorAll('input');
+    for(var i = 0; i < element.length; ++i)
+        element[i].value = '';
+
+    for(var i = 1; i < element.length; ++i)
+        element[i].required = false;
+
+    document.getElementById('input-matricula').readOnly = false;
+    document.getElementById('modify-btn-submit').disabled = true;
+
+}
