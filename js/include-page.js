@@ -1,3 +1,7 @@
+document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+});
+
 $(document).ready(function(){
 
     $('#insert-btn').on('click', function(){
