@@ -20,8 +20,8 @@ $(document).ready(function(){
             $('#username-available-message').toggleClass('is-hidden', true);
             $('#username-notavailable-message').toggleClass('is-hidden', true);
             $('#username-notvalid-message').toggleClass('is-hidden', false);
-            $('#username_').toggleClass('is-success', true);
-            $('#username_').toggleClass('is-danger', false);
+            $('#username_').toggleClass('is-success', false);
+            $('#username_').toggleClass('is-danger', true);
 
             return;
 
@@ -66,8 +66,8 @@ $(document).ready(function()
             $('#email-available-message').toggleClass('is-hidden', true);
             $('#email-notavailable-message').toggleClass('is-hidden', true);
             $('#email-notvalid-message').toggleClass('is-hidden', false);
-            $('#email_').toggleClass('is-success', true);
-            $('#email_').toggleClass('is-danger', false);
+            $('#email_').toggleClass('is-success', false);
+            $('#email_').toggleClass('is-danger', true);
 
             return;
 
