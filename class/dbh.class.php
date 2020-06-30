@@ -11,27 +11,11 @@
         protected function connect($local = true)
         {
 
-            // debugger
-            if (!$local)
-            {
-
-                $this->host = 'sql304.epizy.com';
-                $this->user = 'epiz_25639737';
-                $this->pwd = 'uq4bLFhEoup';
-                $this->db = 'epiz_25639737_cadastros';
-                $this->charset = 'utf8mb4';
-
-            }
-            else
-            {
-
-                $this->host = 'localhost';
-                $this->user = 'root';
-                $this->pwd = '';
-                $this->db = 'cadastros';
-                $this->charset = 'utf8mb4';
-
-            }
+            $this->host = 'localhost';
+            $this->user = 'root';
+            $this->pwd = '';
+            $this->db = 'cadastros';
+            $this->charset = 'utf8mb4';
 
             // Actual connection;
             try
